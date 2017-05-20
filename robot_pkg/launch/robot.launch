@@ -1,0 +1,40 @@
+<launch>
+     <node  pkg  ='robot_pkg' type='robot' name='robot' output ='screen'>
+       <param name ='wheel_diameter' value = '0.09'/>
+       <param name ='track_width'    value = '0.28'/>
+     </node>
+     <node name="controller_left" pkg="pid" type="controller" ns="left_wheel" output="screen" >
+       <param name="node_name" value="left_wheel_pid" />
+       <param name="Kp" value="0.8" />
+       <param name="Ki" value="5" />
+       <param name="Kd" value="0.0" />
+       <param name="upper_limit" value="400" />
+       <param name="lower_limit" value="-400" />
+       <param name="windup_limit" value="400" />
+       <param name="diagnostic_period" value="0.25" />
+       <param name="max_loop_frequency" value="100.0" />
+       <param name="min_loop_frequency" value="100.0" />
+       <remap from="setpoint" to="rpm_cmd_setPoint" />
+       <remap from="state" to="rpm_plant_state_from_arduino" />
+       <remap from="control_effort" to="ctrl_effort_to_arduino" />
+     </node>
+
+     <node name="controller_right" pkg="pid" type="controller" ns="right_wheel" output="screen" >
+       <param name="node_name" value="left_wheel_pid" />
+       <param name="Kp" value="0.8" /> <!-- risposta lenta: Kp = 0.2 -->
+       <param name="Ki" value="5" /> <!-- risposta lenta: Kp = 1.3 -->
+       <param name="Kd" value="0.0" />
+       <param name="upper_limit" value="400" />
+       <param name="lower_limit" value="-400" />
+       <param name="windup_limit" value="400" />
+       <param name="diagnostic_period" value="0.25" />
+       <param name="max_loop_frequency" value="100.0" />
+       <param name="min_loop_frequency" value="100.0" />
+       <remap from="setpoint" to="rpm_cmd_setPoint" />
+       <remap from="state" to="rpm_plant_state_from_arduino" />
+       <remap from="control_effort" to="ctrl_effort_to_arduino" />
+     </node>
+   <!-- rqt_plot is a resource hog, so if you're seeing high CPU usage, don't launch rqt_plot  -->
+    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot"
+    args="/left_wheel/ctrl_effort_to_arduino/data /left_wheel/rpm_plant_state_from_arduino/data /left_wheel/rpm_cmd_setPoint/data /right_wheel/ctrl_effort_to_arduino/data /right_wheel/rpm_plant_state_from_arduino/data /right_wheel/rpm_cmd_setPoint/data" />
+</launch>
