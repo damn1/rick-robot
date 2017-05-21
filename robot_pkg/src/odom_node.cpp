@@ -167,9 +167,7 @@ void ROSnode::computeVelocities() {
     // la velocità lineare del robot è la media delle due velocità dei centri delle ruote
     vel = (left_center_vel + right_center_vel) /2;
     // la velocità angolare del robot (v_r - v_l) / L 
-    omega = (right_center_vel - left_center_vel) / track_width;  
-    std::cout << "velocità lineare calcolata: " << vel << "\n";  
-    std::cout << "velocità angolare calcolata: " << omega << "\n";  
+    omega = (right_center_vel - left_center_vel) / track_width; 
 }
 
 //-----------------------------------------------------------------

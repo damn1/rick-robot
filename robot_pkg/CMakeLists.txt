@@ -135,10 +135,10 @@ ${catkin_INCLUDE_DIRS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(robot src/set_point_node.cpp)
-add_executable(rodom src/odom_node.cpp)
-target_link_libraries(robot ${catkin_LIBRARIES})
-target_link_libraries(rodom ${catkin_LIBRARIES})
+add_executable(rick_setpoint_node src/set_point_node.cpp)
+add_executable(rick_odometry_node src/odom_node.cpp)
+target_link_libraries(rick_setpoint_node ${catkin_LIBRARIES})
+target_link_libraries(rick_odometry_node ${catkin_LIBRARIES})
 
 
 

@@ -78,7 +78,7 @@ void ROSnode::vel_msg_Callback(const geometry_msgs::Twist& msg) {
     
     if (angular_vel_z == 0) {     // go straight
         // convert m/s to rpm
-        ROS_INFO("CIAO POLLO");
+        ROS_INFO("Arrivato comando di velocità.");
         rpm_req1 = linear_vel_x*60/(M_PI*wheel_diameter);
 	// rpm_req1 = rpm_req2; una volta sistemato il problema di alimentazione congiunta motore/encoder        
 	rpm_req2 = - rpm_req1;

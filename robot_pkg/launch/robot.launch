@@ -1,7 +1,9 @@
 <launch>
-     <node  pkg  ='robot_pkg' type='robot' name='robot' output ='screen'>
+     <node  pkg  ='robot_pkg' type='rick_setpoint_node' name='rick_setpoint_node' output ='screen'>
        <param name ='wheel_diameter' value = '0.09'/>
        <param name ='track_width'    value = '0.28'/>
+     </node>
+     <node  pkg  ='robot_pkg' type='rick_odometry_node' name='rick_odometry_node' output ='screen'>
      </node>
      <node name="controller_left" pkg="pid" type="controller" ns="left_wheel" output="screen" >
        <param name="node_name" value="left_wheel_pid" />
